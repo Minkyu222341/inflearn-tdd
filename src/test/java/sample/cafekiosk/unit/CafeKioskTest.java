@@ -37,7 +37,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("한잔 주문 테스트")
+	@DisplayName("음료 1잔을 추가하면 주문 목록에 담긴다.")
 	void add() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		cafeKiosk.add(new Americano());
@@ -47,7 +47,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("여러잔 주문 테스트")
+	@DisplayName("여러잔을 추가 했을 때 정상적으로 주문에 담긴다.")
 	void addSeveralBeverages() throws IllegalAccessException {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -65,7 +65,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("0잔 주문 예외 테스트")
+	@DisplayName("0잔 이하로 주문 했을 때 예외가 발생한다.")
 	void addZeroBeverages() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -76,7 +76,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("음료 삭제 테스트")
+	@DisplayName("주문 목록에서 음료를 삭제한다.")
 	void remove() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -89,7 +89,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("바구니 전체 삭제 테스트")
+	@DisplayName("주문 목록을 비운다.")
 	void clear() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -104,7 +104,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("주문시간 테스트")
+	@DisplayName("주문 목록에 음료 두잔을 추가한다.")
 	void createOrder() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -117,7 +117,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("주문시간 테스트")
+	@DisplayName("영업 시간 이내에 주문을 생성한다.")
 	void creatOrderCurrentTime() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -131,7 +131,7 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("주문 시간 예외 테스트")
+	@DisplayName("영업 시간 외에 주문을 생성하면 예외가 발생한다.")
 	void creatOrderOutsideOpenTime() {
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
@@ -143,8 +143,9 @@ class CafeKioskTest {
 	}
 
 	@Test
-	@DisplayName("총 주문금액 계산 테스트")
+	@DisplayName("주문 목록에 담긴 음료들의 총 금액을 계산한다.")
 	void calculateTotalPrice() {
+		// given
 		CafeKiosk cafeKiosk = new CafeKiosk();
 		Americano americano = new Americano();
 		Latte latte = new Latte();
@@ -152,8 +153,11 @@ class CafeKioskTest {
 		cafeKiosk.add(americano);
 		cafeKiosk.add(latte);
 
+		// when
 		int totalPrice = cafeKiosk.calculateTotalPrice();
 
+		// then
 		assertThat(totalPrice).isEqualTo(8500);
 	}
+
 }
